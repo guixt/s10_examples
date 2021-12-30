@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Logon</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta content="en" http-equiv="Content-Language">
+    <link href="../../../style/s10.style.css" rel="stylesheet" type="text/css">
+    <link rel='stylesheet' type='text/css' href='../../../style/custom.style.css'>
+    <script src="../../synactiveS10/synactiveS10.java.js"></script>
+
+</head>
+
+<body onkeypress='if(event.keyCode==13){dologon(); return false;};' class="colorscheme9" onload="init();"
+      style="width: 410px;">
+
+    <header style="width: 410px; position: fixed; top: 0; background-color: #076399;">
+        <h2 style="padding-left: 16px; color: white;">S10 Template Project 3</h2>
+    </header>
+
+    <div style="width: 340px; padding: 15px; border-radius: 12px; background: #f1f5fb; margin-left: 20px; margin-top: 90px;">
+
+        <div>
+            <label class="label" for="user">User Name</label><br>
+            <input class="input" id="user" name="user" placeholder="" type="text">
+
+        </div>
+        <div>
+            <label class="label" for="user">Password</label><br>
+            <input class="input" id="password" name="password" placeholder="" type="password">
+        </div>
+        <div>
+            <label class="label" for="language">Language</label><br>
+
+            <select style="padding: 3px; width: 120px;" id="language" class="inputselect" size="1">
+                <option value="de">German</option>
+                <option value="en">English</option>
+                <option value="fr">French</option>
+                <option value="it">Italian</option>
+                <option value="ja">日本語</option>
+            </select>
+
+            <script>
+                // Preselect language 
+                document.getElementById('language').value = navigator.language.substring(0, 2).toLowerCase();
+            </script>
+        </div>
+        <div>
+            <button class="button" id="LogonButton" style="width: 172px; margin-top: 10px;"
+                    onclick="dologon(this);return false;">
+                Logon
+            </button>
+
+            <div class="processingmessage">
+                <p>Logon in progress ...</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        function dologon(f) {
+
+            var logon_user = document.getElementById('user').value;
+            var logon_password = document.getElementById('password').value;
+
+
+            // name specified?
+            if (logon_user == '') {
+                S10ErrorMessage(f, "Please enter the user name");
+                return;
+            };
+
+            // password specified?
+            if (logon_password == '') {
+                S10ErrorMessage(f, "Please enter the password");
+                return;
+            };
+
+            // set logon parameters and S10 start configuration;
+            var logon_client = '100';
+            var logon_language =  document.getElementById('language').value;
+
+            var classname = "main";
+            var progname = "/s10/diagram_examples";
+
+            S10Logon(logon_client, logon_user, logon_password, logon_language, classname, progname);
+        };
+
+    </script>
+
+</body>
+
+</html>

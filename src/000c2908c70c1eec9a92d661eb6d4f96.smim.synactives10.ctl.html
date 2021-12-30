@@ -1,0 +1,80 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script language="JavaScript" src="synactiveS10.java.js"></script>
+    <script language="JavaScript" src="synactiveS10.ctl.comp.js"></script>
+    <base target="_self">
+</head>
+
+<body>
+
+
+    <script type="text/javascript">
+
+
+        var view = "../" + scrdata.applid + "/views." + s10.viewtarget + "/" + scrdata.applid + "." + scrdata.screenid + ".html";
+
+
+        var publicview = "";
+        var namespace = "";
+        var applid = scrdata.applid;
+        var screenid = scrdata.screenid;
+        var short_applid = applid;
+
+        // remove namespace
+        if (applid.substr(0, 1) == '/' && applid.substr(1).indexOf('/') > -1) {
+            short_applid = applid.substr(applid.substr(1).indexOf('/') + 2);
+            namespace = applid.substr(1, applid.substr(1).indexOf('/'));
+            view = "../" + namespace + '.' + short_applid + "/views." + s10.viewtarget + "/" + short_applid + "." + scrdata.screenid + ".html";
+        };
+
+        if (!ServerFileExists(view)) {
+
+
+            if (namespace != "") {
+                publicview = window.location.origin + '/sap/bc/bsp/' + namespace + '/public/classes/' + short_applid + "/views." + s10.viewtarget + "/" + short_applid + "." + screenid + ".html";
+            }
+            else {
+                publicview = window.location.origin + '/sap/bc/bsp/public/classes/' + short_applid + "/views." + s10.viewtarget + "/" + short_applid + "." + screenid + ".html";
+            };
+
+            if (!ServerFileExists(publicview)) {
+                alert("HTML view not found:\n" + view + "\n\nAlso not found in the 'public' folder:\n" + publicview);
+            };
+
+            view = publicview;
+
+
+        };
+
+
+        if (typeof (parent.parent.app1) != 'undefined' && typeof (parent.parent.app2) != 'undefined') {
+            if (s10.popuplevel == 0 && !scrdata.remote_dialog) {
+
+                window.onbeforeunload = function (e) { unload(); };
+
+
+                switch (scrdata.application_frame_no) {
+                    case 1: parent.parent.app1.location.replace(view); break;
+                    case 2: parent.parent.app2.location.replace(view); break;
+                };
+
+            }
+            else {
+
+
+                switch (scrdata.application_frame_no) {
+                    case 1: parent.parent.app2.location.replace(view); break;
+                    case 2: parent.parent.app1.location.replace(view); break;
+                };
+
+                scrdata.change_application_frame = true;
+            };
+        };
+
+
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=400">
+    <link rel='stylesheet' type='text/css' href='../../../style/s10.style.css'>
+    <link rel='stylesheet' type='text/css' href='../../../style/custom.style.css'>
+    <script src='../../synactiveS10/synactiveS10.java.js'></script>
+
+    <title>kna1</title>
+</head>
+<body style="width:100%; margin:0px; padding:0px;" onload='init();' class="colorscheme9">
+
+    <div class="headerarea" style="width: 100%; padding:10px;">
+
+        <!-- title from data dictionary -->
+        <b>Fiche client (partie g&#233;n&#233;rale)</b>
+    </div>
+
+    <div class="toolbar">
+
+        <button type="button" class="toolbarbutton"
+                onclick="S10Enter();">
+            D&#233;marrer
+        </button>
+
+
+        <button type="button" class="toolbarbutton" style="float:right;"
+                onclick="S10Logoff();">
+            Quitter
+        </button>
+
+
+
+    </div>
+
+    <!-- filter -->
+    <div class="tablefilteractive">
+
+
+        <div class="infoblock" style="width:150px; height:50px;">
+            <label class="label">Le nom contient</label><br>
+            <input type="search" class="input" name="search_name1" style="width: 140px;">
+        </div>
+
+
+        <div class="infoblock" style="width:150px; height:50px;">
+            <label class="label">Lieu contient</label><br>
+            <input type="search" class="input" name="search_ort01" style="width: 140px;">
+        </div>
+
+
+        <div class="infoblock" style="width:250px; height:50px;">
+            <label class='label output' name='search_land1' for='search_land1'></label><br />
+            <select size="1" name='search_land1' data-s10dropdownlist='search_land1@dropdownlist' onchange="S10Enter();"
+                    id='search_land1' class='inputselect' style='width: 240px;'>
+            </select>
+        </div>
+
+
+
+
+        <div class="infoblock" style="width:150px; height:50px;">
+            <label class='label'>Nbre Max. De R&#233;sultats</label><br />
+            <select class="inputselect" name="search_maxrowcount" size="1" style='width: 120px;' onchange="S10Enter();">
+
+                <option value="100">
+                    100
+                </option>
+
+                <option value="400">
+                    400
+                </option>
+
+                <option value="1000">
+                    1000
+                </option>
+
+                <option value="4000">
+                    4000
+                </option>
+
+                <option value="10000">
+                    10000
+                </option>
+
+                <option value="40000">
+                    40000
+                </option>
+
+                <option value="100000">
+                    100000
+                </option>
+
+            </select>
+        </div>
+
+
+
+        <div class="infoblock" style="width:150px;  height:50px;">
+            <label class='label'>Nombre s&#233;lectionn&#233;</label><br />
+            <div class='output' style="font-size:14px;  padding-top: 6px;  font-weight: bold;" name='tabkna1@rowcount'></div>
+        </div>
+
+        <div class="processingmessage">Les donn&#233;es sont s&#233;lectionn&#233;es...</div>
+
+    </div>
+
+
+    <!-- column headers -->
+    <div class="colheaders">
+        <div class='colhead colheadup output' style="width: 90px;" name="kunnr">
+        </div>
+
+        <div class='colhead output' style="width: 140px; --landscape-width: 290px; " name="name1">
+        </div>
+
+        <div class='colhead output landscape' style="width: 40px;" name="land1">
+        </div>
+        <div class='colhead output landscape' style="width: 90px;" name="pstlz"> </div>
+
+        <div class='colhead output' style="width: 110px; --landscape-width: 200px;--desktop-width: 300px;" name="ort01">
+        </div>
+
+        <div class="colhead" style="width: 20px;  float: right;  margin-right:4px;" onclick="S10FilterTable(this);">
+            <img src="../../../icons/filter.png" style="width:18px;height:18px;">
+        </div>
+
+    </div>
+
+    <!-- list rows -->
+    <form class='table' name='tabkna1'>
+
+        <div class="tablerow" onclick="S10ToggleDetail(this);">
+
+            <div class='outputcelldiv' style="width: 90px;" name="kunnr"></div>
+            <div class='outputcelldiv' style="width: 140px; --landscape-width:290px; " name="name1"></div>
+            <div class='outputcelldiv landscape' style="width: 40px;" name="land1"></div>
+            <div class='outputcelldiv landscape' style="width: 90px;" name="pstlz"></div>
+            <div class='outputcelldiv' style="width:  110px;  --landscape-width: 200px;--desktop-width: 300px;" name="ort01"></div>
+            <div class='tablerequestdetail' style='float: right;'></div>
+
+        </div>
+
+    </form>
+
+    <!-- nothing selected -->
+    <div class="tablenocontent" style="display: block;">Aucune donn&#233;e s&#233;lectionn&#233;e</div>
+
+
+    <!-- detail view -->
+    <div id="tabkna1_detail" class='tabledetail'>
+
+        <!-- Name 1 -->
+        <div class="infoblock">
+            <label class='label output' name="mykna1.name1"></label><br />
+            <span class='output' type="text" name='mykna1.name1'></span>
+        </div>
+
+         <!-- Name 2 -->
+       <div class="infoblock">
+            <label class='label output' name="mykna1.name2"></label><br />
+            <span class='output' type="text" name='mykna1.name2'></span>
+        </div>
+                 
+         <!-- Straße -->
+       <div class="infoblock">
+            <label class='label output' name="mykna1.stras"></label><br />
+            <span class='output' type="text" name='mykna1.stras'></span>
+        </div>
+                
+        <!-- Postleitzahl -->
+        <div class="infoblock">
+            <label class='label output' name="mykna1.pstlz"></label><br />
+            <span class='output' type="text" name='mykna1.pstlz'></span>
+        </div>
+                
+        <!-- Ort -->
+       <div class="infoblock">
+            <label class='label output' name="mykna1.ort01"></label><br />
+            <span class='output' type="text" name='mykna1.ort01'></span>
+        </div>
+                              
+        <!-- Land -->
+        <div class="infoblock">
+            <label class='label output' name="mykna1.land1"></label><br />
+            <span class='output' type="text" name='mykna1.land1'></span>
+            <span class='output' type="text" name='mykna1.land1@text'></span>
+        </div>
+                            
+        <!-- Region -->
+       <div class="infoblock">
+            <label class='label output' name="mykna1.regio"></label><br />
+            <span class='output' type="text" name='mykna1.regio'></span>
+            <span class='output' type="text" name='mykna1.regio@text'></span>
+        </div>
+                                   
+        <!-- Telefon -->
+       <div class="infoblock">
+            <label class='label output' name="mykna1.telf1"></label><br />
+            <span class='output' type="text" name='mykna1.telf1'></span>
+        </div>
+                        
+        <!-- Steuernummer -->
+       <div class="infoblock">
+            <label class='label output' name="mykna1.stcd1"></label><br />
+            <span class='output' type="text" name='mykna1.stcd1'></span>
+        </div>
+             
+
+    </div>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=400">
+    <link rel='stylesheet' type='text/css' href='../../../style/s10.style.css'>
+    <link rel='stylesheet' type='text/css' href='../../../style/custom.style.css'>
+    <script src='../../synactiveS10/synactiveS10.java.js'></script>
+
+    <title>Diagram examples</title>
+</head>
+<body style="width: 100%; margin: 0px; padding: 0px;" onload='init();' class="colorscheme9">
+
+    <div class="headerarea" style="width: 100%; padding: 10px;">
+
+
+        <b>Diagram examples</b>
+    </div>
+
+    <div class="toolbar">
+
+        <button type="button" class="toolbarbutton"
+            onclick="S10Enter();">
+            Refresh
+        </button>
+
+
+        <button type="button" class="toolbarbutton" style="float: right;"
+            onclick="S10Logoff();">
+            End
+        </button>
+
+
+
+    </div>
+
+    <!-- filter -->
+    <div class="tablefilteractive">
+
+
+        <div class="infoblock" style="width: 150px; height: 50px;">
+            <label class="label">Name contains</label><br>
+            <input type="search" class="input" name="" style="width: 140px;">
+        </div>
+
+
+        <div class="infoblock" style="width: 150px; height: 50px;">
+            <label class="label">Place contains</label><br>
+            <input type="search" class="input" name="" style="width: 140px;">
+        </div>
+
+
+        <div class="infoblock" style="width: 250px; height: 50px;">
+            <label class='label output' name='' for=''></label>
+            <br />
+            <select size="1" name='' data-s10dropdownlist='search_land1@dropdownlist' onchange="S10Enter();"
+                id='search_land1' class='inputselect' style='width: 240px;'>
+            </select>
+        </div>
+
+
+
+
+        <div class="infoblock" style="width: 150px; height: 50px;">
+            <label class='label'>Diagram examples</label><br />
+            <select class="inputselect" name="diagram_chosen_example" size="1" style='width: 120px;' onchange="S10Enter();">
+
+                <option value="1">Diagram 1
+                </option>
+
+                <option value="2">Diagram 2
+                </option>
+
+                <option value="1000">1000
+                </option>
+
+                <option value="4000">4000
+                </option>
+
+                <option value="10000">10000
+                </option>
+
+                <option value="40000">40000
+                </option>
+
+                <option value="100000">100000
+                </option>
+
+            </select>
+        </div>
+
+        
+        <div class="processingmessage">Data is selected...</div>
+
+    </div>
+
+
+
+
+</body>
+</html>
+
+
+
